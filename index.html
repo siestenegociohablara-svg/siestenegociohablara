@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Si Este Negocio Hablara</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ SPLASH -->
+<div id="splash">
+  <div id="splash-bg"><i class="sp sp1"></i><i class="sp sp2"></i><i class="sp sp3"></i></div>
+  <div id="splash-overlay"></div>
+  <div id="splash-content">
+    <img src="img/pantalla_inicio_nueva.png" alt="Si Este Negocio Hablara" id="splash-logo"/>
+    <button id="splash-btn">Comenzar</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ APP -->
+<div id="app" class="hidden">
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div id="navbar-inner">
+      <button id="nav-logo-btn" class="nav-logo-btn">
+        <img src="img/logo_de_si_este_negocio_hablara_casa.png" alt="logo" class="nav-casa-img"/>
+        <span class="nav-title">Si este negocio hablara</span>
+      </button>
+      <button id="hamburger-btn" class="hamburger-btn">
+        <span class="hamburger-bars"><span></span><span></span><span></span></span>
+        Menú
+      </button>
+    </div>
+  </nav>
+
+  <!-- NAV MENU -->
+  <div id="menu-overlay" class="hidden"></div>
+  <div id="menu-panel" class="menu-panel-hidden">
+    <div class="menu-close-row">
+      <button id="menu-close-btn" class="menu-close-btn">Cerrar <span>×</span></button>
+    </div>
+    <button class="menu-item" data-target="trailer">Trailer</button>
+    <button class="menu-item" data-target="emprendimientos">Emprendimientos</button>
+    <button class="menu-item" data-target="comunidad">Comunidad</button>
+    <button class="menu-item" data-target="merchandising">Merchandising</button>
+    <button class="menu-item" data-target="productora">Productora</button>
+    <button class="menu-item" data-target="contacto">Contacto</button>
+    <p class="menu-footer">Si Este Negocio Hablara · 2026</p>
+  </div>
+
+  <!-- ── PROYECTO · DIAPOSITIVAS ── -->
+  <div id="seccion-proyecto">
+    <button id="slide-prev" class="slide-arrow slide-arrow-left" aria-label="Anterior">←</button>
+    <button id="slide-next" class="slide-arrow slide-arrow-right" aria-label="Siguiente">→</button>
+    <div class="slide-dots"><button class="slide-dot active" aria-label="1"></button><button class="slide-dot" aria-label="2"></button><button class="slide-dot" aria-label="3"></button><button class="slide-dot" aria-label="4"></button></div>
+
+    <article class="slide" style="--i:0" id="panel-0">
+      <div class="slide-card tone-vino" tabindex="0"><i class="slide-shape" aria-hidden="true"></i>
+        <header class="slide-top"><span class="slide-tag">El Proyecto</span><span class="slide-num">01 / 04</span></header>
+        <div class="slide-body">
+          <h2 class="slide-title"><span class="accent">Si este negocio</span> hablara</h2>
+          <aside class="slide-reveal"><div class="slide-reveal-inner">
+            <p class="slide-lead">Un proyecto audiovisual que da voz a quienes construyen Colombia desde adentro.</p>
+            <div class="panel-stats">
+              <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Contenido colombiano</div></div>
+              <div class="stat-item"><div class="stat-number">ODS 8</div><div class="stat-label">Trabajo Decente</div></div>
+            </div>
+          </div></aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide" style="--i:1" id="panel-1">
+      <div class="slide-card tone-orange" tabindex="0"><i class="slide-shape" aria-hidden="true"></i>
+        <header class="slide-top"><span class="slide-tag">Objetivo de desarrollo sostenible</span><span class="slide-num">02 / 04</span></header>
+        <div class="slide-body">
+          <div class="slide-title-wrap">
+            <h2 class="slide-title">ODS <span class="accent">8</span></h2>
+            <p class="slide-subtitle">Trabajo Decente y Crecimiento Económico</p>
+          </div>
+          <aside class="slide-reveal"><div class="slide-reveal-inner">
+            <ul class="ods-list">
+              <li><span class="arrow-gold">→</span>55–57% del empleo es informal (2026)</li>
+              <li><span class="arrow-gold">→</span>+13M personas sin contrato ni seguridad social</li>
+              <li><span class="arrow-gold">→</span>Microempresas: hasta 85% de informalidad</li>
+            </ul>
+            <div class="ods-bar-item">
+              <div class="ods-bar-label"><span>Cundinamarca</span><span class="ods-bar-pct">55%</span></div>
+              <div class="ods-bar-track"><div class="ods-bar-fill" style="width:55%"></div></div>
+            </div>
+            <div class="ods-bar-item">
+              <div class="ods-bar-label"><span>Total Nacional</span><span class="ods-bar-pct">57%</span></div>
+              <div class="ods-bar-track"><div class="ods-bar-fill" style="width:57%"></div></div>
+            </div>
+            <button id="ods-what-btn" class="btn-ghost-sm">¿Qué es ODS?</button>
+          </div></aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide" style="--i:2" id="panel-2">
+      <div class="slide-card tone-cream" tabindex="0"><i class="slide-shape" aria-hidden="true"></i>
+        <header class="slide-top"><span class="slide-tag">⚠ La realidad</span><span class="slide-num">03 / 04</span></header>
+        <div class="slide-body">
+          <div class="slide-title-wrap">
+            <h2 class="slide-title">72%</h2>
+            <p class="slide-subtitle">de los emprendimientos colombianos cierran antes de cumplir 5 años.</p>
+          </div>
+          <aside class="slide-reveal"><div class="slide-reveal-inner">
+            <p class="slide-lead">La causa principal no es la falta de calidad — es la <strong>falta de visibilidad</strong>. Sin historia, sin comunidad, sin voz. Más de <strong>2.000 millones</strong> de personas trabajan en la informalidad en el mundo.</p>
+            <div class="pills-row">
+              <span class="pill-orange">85% informalidad</span>
+              <span class="pill-orange">Poca visibilidad</span>
+              <span class="pill-orange">Sin apoyo institucional</span>
+              <span class="pill-orange">Desmotivación</span>
+            </div>
+          </div></aside>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide" style="--i:3" id="panel-3">
+      <div class="slide-card tone-peach" tabindex="0"><i class="slide-shape" aria-hidden="true"></i>
+        <header class="slide-top"><span class="slide-tag">✦ La solución</span><span class="slide-num">04 / 04</span></header>
+        <div class="slide-body">
+          <h2 class="slide-title">Darles <span class="accent">la palabra.</span></h2>
+          <aside class="slide-reveal"><div class="slide-reveal-inner">
+            <p class="slide-lead">Producimos contenido audiovisual, mapeamos los negocios en su territorio y construimos una comunidad digital que elige consumir local. <em>Porque cuando un negocio habla, la comunidad escucha.</em></p>
+            <div class="solution-grid">
+              <div class="solution-card"><div class="sol-icon">🎬</div><div class="sol-title">Estrategia transmedia</div><div class="sol-sub">para impulsar crecimiento</div></div>
+              <div class="solution-card"><div class="sol-icon">📍</div><div class="sol-title">Mapeo territorial</div><div class="sol-sub">de emprendimientos locales</div></div>
+              <div class="solution-card"><div class="sol-icon">📱</div><div class="sol-title">Contenido digital</div><div class="sol-sub">que genera comunidad</div></div>
+              <div class="solution-card"><div class="sol-icon">🤝</div><div class="sol-title">Conexión directa</div><div class="sol-sub">entre marcas y personas</div></div>
+            </div>
+          </div></aside>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ── TRAILER ── -->
+  <div id="trailer">
+    <section id="trailer-video-section" class="card-box">
+      <div id="trailer-iframe-wrap">
+        <iframe id="trailer-iframe"
+          title="Si Este Negocio Hablara"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div id="trailer-hero" class="trailer-hero">
+        <div class="trailer-hero-content">
+          <div class="trailer-brand"><span>Cortometraje</span></div>
+          <h2 class="trailer-hero-title"><span>Detras de un</span> <span class="accent">Sueño</span></h2>
+          <p class="trailer-tagline">Nunca es tarde para empezar de nuevo</p>
+          <p class="trailer-synopsis">Cristian es un mecánico que trabaja cada día para sacar adelante a su familia. Sin embargo, el maltrato de su jefe lo lleva a cuestionar su trabajo. Un afiche de Si este negocio hablara despierta su curiosidad y descubre que sus habilidades pueden convertirse en una oportunidad para cambiar su vida y comenzar a construir su propio camino como emprendedor.</p>
+          <button id="trailer-play-btn" class="trailer-play-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>Ver trailer</button>
+        </div>
+      </div>
+      <button id="trailer-back-btn" class="trailer-back-btn" type="button" hidden>← Sinopsis</button>
+      <a id="trailer-yt-link" class="trailer-yt-link" href="https://youtu.be/G393z8s8nFY?si=fYylbST0go0UbDjE" target="_blank" rel="noopener noreferrer">Ver en YouTube ↗</a>
+    </section>
+  </div>
+
+  <!-- ── EMPRENDIMIENTOS ── -->
+  <section id="emprendimientos" class="section-fade stack sec-peach">
+    <div class="section-container">
+      <h2 class="section-heading">Emprendimientos</h2>
+      <p class="section-lead">Elige un emprendimiento para descubrir sus productos. Arrastra el que más te guste hasta el carrito y conoce su ficha técnica.</p>
+      <div id="cat-filters" class="cat-filters"></div>
+      <div id="emp-board" class="emp-board">
+        <div id="emp-items" class="emp-items"></div>
+        <div class="emp-drop-zone">
+          <div id="emp-active-logo" class="emp-active-logo" aria-live="polite"></div>
+          <div class="emp-basket-col">
+            <div id="emp-basket" class="emp-basket" aria-label="Carrito: arrastra aquí un producto">
+              <img src="img/1792542995000.png" class="basket-img" alt="Carrito de compras"/>
+            </div>
+            <div class="basket-label" aria-hidden="true">Arrastra aquí</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMUNIDAD ── -->
+  <section id="comunidad" class="section-fade stack sec-vino" style="padding-left:0;padding-right:0">
+    <div class="section-container" style="padding-bottom:0">
+      <span class="section-eyebrow">Redes sociales</span>
+      <h2 class="section-heading">Comunidad</h2>
+    </div>
+    <div id="marquee-outer">
+      <div id="marquee-track"></div>
+    </div>
+
+    
+  </section>
+
+  <!-- ── MERCHANDISING ── -->
+  <section id="merchandising" class="section-fade stack sec-cream">
+    <div class="section-container">
+      <h2 class="section-heading">Merchandising</h2>
+      <p class="section-lead" style="margin-bottom:3rem">Lleva un pedacito del proyecto contigo. Productos oficiales de Si Este Negocio Hablara.</p>
+      <div id="merch-grid" class="merch-grid"></div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCTORA ── -->
+  <section id="productora" class="stack">
+
+    <!-- Home two-box view -->
+    <div id="prod-home">
+      <div id="prod-luminart-box" class="prod-box prod-box-purple">
+        <div class="prod-box-glow"></div>
+        <img src="img/logo_luminart_group.png" alt="Luminart Group" class="prod-luminart-logo"/>
+        <span class="prod-box-cta-text">← Ver más</span>
+      </div>
+      <div id="prod-equipo-box" class="prod-box prod-box-photo">
+        <img src="img/team_grupal.jpeg" alt="Nuestro equipo" class="prod-equipo-photo" id="prod-equipo-photo"/>
+        <div class="prod-box-gradient"></div>
+        <div class="prod-box-caption">
+          <p class="prod-box-title">Nuestro equipo</p>
+          <p class="prod-box-cta-sm">Ver integrantes →</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luminart detail panel -->
+    <div id="prod-luminart-panel">
+      <div class="prod-panel-content luminart-content">
+        <img src="img/logo_luminart_group.png" alt="Luminart Group" class="luminart-panel-logo"/>
+        <div class="luminart-panel-text">
+          <div class="orange-rule"></div>
+          <p class="luminart-desc">Luminart Group es la productora audiovisual detrás de Si Este Negocio Hablara. Creamos contenido que conecta comunidades, amplifica historias y da vida a proyectos con propósito social.</p>
+          <p class="luminart-email">📧 luminartgroup@gmail.com</p>
+          <div class="luminart-tags">
+            <span class="luminart-tag" style="background:rgba(232,99,26,.13);border-color:rgba(232,99,26,.35);color:#E8631A">🎬 Cortometrajes</span>
+            <span class="luminart-tag" style="background:rgba(212,175,55,.13);border-color:rgba(212,175,55,.35);color:#D4AF37">📷 Fotografía</span>
+            <span class="luminart-tag" style="background:rgba(155,89,182,.13);border-color:rgba(155,89,182,.35);color:#9B59B6">✂️ Edición</span>
+          </div>
+        </div>
+      </div>
+      <button class="prod-panel-back prod-panel-back-right" id="luminart-back-btn">→</button>
+    </div>
+
+    <!-- Equipo detail panel -->
+    <div id="prod-equipo-panel">
+      <div class="equipo-header">
+        <button class="prod-panel-back prod-panel-back-left" id="equipo-back-btn">←</button>
+        <span class="equipo-heading">Nuestro equipo</span>
+      </div>
+      <div id="equipo-cards"></div>
+    </div>
+
+  </section>
+
+  <!-- ── CONTACTO ── -->
+  <section id="contacto" class="section-fade stack sec-vino" style="padding-top:3rem;padding-bottom:3rem">
+    <div class="section-container" style="text-align:center">
+      <span class="section-eyebrow">Síguenos</span>
+      <h2 class="section-heading" style="margin-bottom:2rem">Contacto</h2>
+      <div id="contact-links" class="contact-links"></div>
+      <div class="contacto-footer">
+        <img src="img/logo_de_si_este_negocio_hablara_casa.png" alt="logo" class="footer-logo"/>
+        <p class="footer-copy">© 2026 Si Este Negocio Hablara</p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /app -->
+
+<!-- ═══════════════════════════════════════════════════════ MODALS -->
+
+<!-- ODS Modal -->
+<div id="ods-modal" class="modal-overlay hidden">
+  <div class="modal-box" style="background:var(--vino-deep);max-width:520px">
+    <h3 class="modal-heading">¿Qué son los ODS?</h3>
+    <div class="gold-rule" style="margin-bottom:1.25rem"></div>
+    <p style="color:rgba(242,236,202,.75);font-family:var(--font-body);line-height:1.8;margin:0 0 1rem;font-size:.95rem">Los <strong style="color:var(--gold)">Objetivos de Desarrollo Sostenible (ODS)</strong> son 17 metas globales establecidas por la ONU en 2015 como parte de la Agenda 2030.</p>
+    <p style="color:rgba(242,236,202,.65);font-family:var(--font-body);line-height:1.8;margin:0 0 1.5rem;font-size:.9rem">El <strong style="color:var(--gold)">ODS 8</strong> promueve el trabajo decente y el crecimiento económico inclusivo. "Si este negocio hablara" contribuye directamente visibilizando los emprendimientos de base.</p>
+    <button class="btn-gold modal-close-btn" data-modal="ods-modal">Entendido</button>
+  </div>
+</div>
+
+<!-- Emprendimiento Modal -->
+<div id="emp-modal" class="modal-overlay hidden">
+  <div class="modal-box modal-scroll" style="background:var(--cream);color:var(--vino);max-width:560px" id="emp-modal-content">
+    <!-- filled by JS -->
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="modal-overlay hidden" style="background:rgba(0,0,0,.96);cursor:zoom-out">
+  <img id="lightbox-img" src="" alt="" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:.5rem"/>
+  <button class="modal-x-btn" id="lightbox-close" style="position:absolute;top:16px;right:16px">×</button>
+</div>
+
+<!-- Merch Modal -->
+<div id="merch-modal" class="modal-overlay hidden">
+  <div class="modal-box modal-scroll" style="background:var(--cream);color:var(--vino);max-width:480px;border:0" id="merch-modal-content">
+    <!-- filled by JS -->
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
